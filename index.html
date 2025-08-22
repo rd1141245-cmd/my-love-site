@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Для тебя баян 💖</title>
+
+  <!-- Предзагрузка трека (ускоряет старт после клика) -->
+  <link rel="preload" as="audio" href="music/song.mp3" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="loading">
+  <!-- ====== Intro (салют -> сердце) ====== -->
+  <div id="intro">
+    <canvas id="fireworks"></canvas>
+    <div id="countdown"></div> <!-- таймер -->
+    <div id="bigHeart" aria-hidden="true"></div>
+  </div>
+
+  <!-- Фоновые сердечки -->
+  <div class="hearts"></div>
+
+  <!-- ====== Контент после интро ====== -->
+  <main id="content" hidden>
+    <section class="hero reveal">
+      <h1>Ты — моё чудо ❤️</h1>
+      <p>Это маленький сайт с нашими моментами.</p>
+    </section>
+
+    <!-- Кнопка музыки (покажется, если автоплей заблокирован) -->
+    <button id="playMusic" class="music-btn reveal" hidden>▶️ Включить музыку</button>
+
+    <!-- Слайдшоу -->
+    <section class="slideshow reveal">
+      <div class="slide-frame">
+        <img id="slideImage" src="images/photo1.jpg" alt="Наши фото" />
+        <div class="slide-dots" id="slideDots"></div>
+      </div>
+    </section>
+
+    <!-- Текст о нас -->
+    <section class="text-section reveal">
+      <h2>Немного о нас 💌</h2>
+
+      <p>
+        Когда я думаю о нас, вспоминаю сотни маленьких моментов —
+        смех, переписки до ночи и наши прогулки. Этот сайт — маленькое
+        «спасибо» за всё это.
+      </p>
+
+      <p>
+        <strong>Люблю тебя</strong> за твою доброту, терпение и свет, который
+        ты приносишь в мой день.
+      </p>
+
+      <blockquote>
+        «Ты — мое маленькое чудо. Сегодня, завтра и всегда.»
+      </blockquote>
+
+      <ul class="memories">
+        <li>Наш первый взгляд ✨</li>
+        <li>Твои улыбки, которые лечат 💕</li>
+        <li>Объятия, в которых весь мир</li>
+      </ul>
+
+      <p class="sign">Твой(я) ❤️</p>
+    </section>
+
+    <!-- Видео -->
+    <section class="videos reveal">
+      <h2>Наши видео</h2>
+      <div class="video-grid">
+        
+        <!-- Первое видео -->
+        <video controls preload="metadata" poster="images/photo11.jpg">
+          <source src="videos/video1.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- Второе видео -->
+        <video controls preload="metadata" poster="images/photo22.jpg">
+          <source src="videos/video2.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- Третье видео -->
+        <video controls preload="metadata" poster="images/photo33.jpg">
+          <source src="videos/video3.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- Четвёртое видео -->
+        <video controls preload="metadata" poster="images/photo44.jpg">
+          <source src="videos/video4.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- Пятое видео -->
+        <video controls preload="metadata" poster="images/photo55.jpg">
+          <source src="videos/video5.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- Шестое видео -->
+        <video controls preload="metadata" poster="images/photo66.jpg">
+          <source src="videos/video6.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- Седьмое видео -->
+        <video controls preload="metadata" poster="images/photo77.jpg">
+          <source src="videos/video7.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- восьмое видео -->
+        <video controls preload="metadata" poster="images/photo88.jpg">
+          <source src="videos/video8.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+        <!-- девятое видео -->
+        <video controls preload="metadata" poster="images/photo99.jpg">
+          <source src="videos/video9.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Музыка -->
+  <audio id="bgm" preload="auto" loop>
+    <source src="music/song.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

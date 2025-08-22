@@ -1,0 +1,226 @@
+/* ===== БАЗОВЫЙ СТИЛЬ (твой романтичный градиент) ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  color: #333;
+  text-align: center;
+  overflow-x: hidden; /* вниз можно скроллить */
+}
+
+/* Во время интро отключаем скролл, после интро включаем */
+body.loading { overflow: hidden; }
+
+.hero h1 { font-size: 3em; color: #ff3366; margin: 24px 0 8px; }
+.hero p { font-size: 1.5em; color: #660033; margin: 0 12px; }
+
+.photo {
+  margin-top: 20px;
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 0, 100, 0.6);
+}
+
+/* ===== Intro всегда во весь экран ===== */
+#intro{
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(140vmax 140vmax at 50% 40%, #1c1423 0%, #0f0b14 60%, #0a0810 100%);
+  display: grid;
+  place-items: center;
+  z-index: 999; /* поднял, чтобы всегда перекрывало */
+  transition: opacity .8s ease, visibility .8s ease;
+}
+#fireworks{
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#bigHeart{
+  --s: 220px;
+  width: var(--s); height: var(--s);
+  position: relative; transform: scale(.2); opacity: 0;
+  filter: drop-shadow(0 12px 30px rgba(255,122,162,.45));
+  animation: heartPop 1.2s ease-out 1.8s forwards;
+}
+#bigHeart::before, #bigHeart::after{
+  content:""; position:absolute; inset:0;
+  width:var(--s); height:var(--s);
+  background: linear-gradient(145deg, #ff7aa2, #ff97b7);
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(45deg);
+}
+#bigHeart::after{
+  left: calc(var(--s) * -0.5);
+  border-radius: 50% 50% 50% 0;
+}
+@keyframes heartPop{
+  0%{transform:scale(.2); opacity:0}
+  60%{transform:scale(1.1); opacity:1}
+  100%{transform:scale(1); opacity:1}
+}
+
+/* ===== Фоновые сердечки (под контентом!) ===== */
+.hearts{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1; /* чтобы не перекрывали контент */
+}
+.heart {
+  position: fixed;
+  width: 20px; height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 8s linear infinite;
+  opacity: 0.85;
+}
+.heart:before, .heart:after {
+  content: "";
+  position: absolute;
+  width: 20px; height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+.heart:before { top: -10px; left: 0; }
+.heart:after  { left: -10px; top: 0; }
+@keyframes float {
+  0%   { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+}
+
+/* ===== Секции плавно проявляются ===== */
+.reveal { opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease, transform .6s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+/* ===== Слайдшоу ===== */
+.slideshow{ display:grid; place-items:center; margin:28px 0 40px; }
+.slide-frame{
+  position:relative; width:min(92vw, 860px); aspect-ratio:16/9;
+  background:#0d0a12; border-radius:24px; overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.06) inset;
+}
+.slide-frame img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  opacity:0; transform:scale(1.02);
+  transition: opacity .6s ease, transform .8s ease;
+}
+.slide-frame img.show{ opacity:1; transform:scale(1) }
+
+.slide-dots{
+  position:absolute; left:0; right:0; bottom:10px;
+  display:flex; gap:8px; justify-content:center;
+}
+.slide-dots button{
+  width:10px; height:10px; border-radius:999px; border:none; cursor:pointer;
+  background:rgba(255,255,255,.45);
+}
+.slide-dots button.active{ background:#fff }
+
+/* ===== Видео ===== */
+.videos{ max-width:1100px; margin:0 auto 32px; padding:0 8px; }
+.videos h2{ margin:12px 0 14px; color:#660033 }
+.video-grid{
+  display:grid; gap:16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+video{
+  width:100%; border-radius:18px; background:#000;
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+  outline:none;
+  opacity: 0; transition: opacity .6s ease;
+}
+video.show{ opacity: 1; }
+
+/* ===== Кнопка музыки ===== */
+.music-btn{
+  position: sticky;
+  bottom: 16px;
+  margin: 12px auto 24px;
+  display: block;
+  padding: 12px 18px;
+  border: 0; border-radius: 999px;
+  font-size: 16px; cursor: pointer;
+  background: #ffffff; color: #1a1423;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .3s ease;
+}
+.music-btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 26px rgba(0,0,0,.28); }
+.music-btn:active{ transform: translateY(0); }
+.music-btn.hide{ opacity: 0; pointer-events: none; }
+
+/* Таймер обратного отсчёта */
+#countdown {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5em;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255,255,255,.6);
+  opacity: 0;
+  animation: fadeIn .5s ease forwards;
+  z-index: 1000;
+}
+
+/* Плавное исчезновение интро */
+#intro.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+/* Анимация появления цифры */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -20%) scale(0.8); }
+  to   { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+/* ===== Текстовая секция ===== */
+.text-section{
+  max-width: 900px;
+  margin: 0 auto 36px;
+  padding: 24px 20px;
+  text-align: left;
+  background: rgba(255,255,255,0.65);
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.12);
+  backdrop-filter: blur(6px);
+}
+.text-section h2{
+  margin: 0 0 12px;
+  color: #ff3366;
+  text-align: center;
+}
+.text-section p{
+  line-height: 1.6;
+  margin: 10px 0;
+  color: #4a2a3a;
+}
+.text-section blockquote{
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-left: 4px solid #ff7aa2;
+  background: rgba(255,122,162,.08);
+  border-radius: 12px;
+  font-style: italic;
+  color: #5a2a3d;
+}
+.text-section .memories{
+  margin: 12px 0 0 0;
+  padding-left: 18px;
+  color: #5a2a3d;
+}
+.text-section .memories li{
+  margin: 6px 0;
+}
+.text-section .sign{
+  margin-top: 14px;
+  text-align: right;
+  color: #660033;
+  font-weight: bold;
+}
